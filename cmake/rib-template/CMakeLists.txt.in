@@ -1,5 +1,26 @@
 cmake_minimum_required(VERSION 3.20)
 project(@PROJECT@ C ASM)
+
 set(CORE "@CORE@")
 set(BOARD "@BOARD@")
-# ... rest of your CMake
+set(SHIELD_SOURCE_DIR src/shield)
+# App target
+add_executable(${PROJECT_NAME}
+  src/main.c
+  ${SHIELD_SOURCE_DIR}/main.cpp
+)
+
+# Make headers in src/ visible (e.g., src/foo.h)
+target_include_directories(${PROJECT_NAME}
+  PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/src
+)
+
+# If you have a BSP lib target elsewhere, link it like:
+target_link_libraries(${PROJECT_NAME} PRIVATE bsp freertos etl littlefs lwip)
+
+# BUILD FSBL
+
+# BUILD PMWFW
+
+# Run bootgen
