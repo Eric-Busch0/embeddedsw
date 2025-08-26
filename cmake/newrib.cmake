@@ -1,11 +1,11 @@
 # Usage:
 #   cmake -P scaffold.cmake
-#        -DTEMPLATE_DIR=/abs/path/templates/baremetal
 #        -DDEST_DIR=/abs/path/new-project
 #        -DPROJECT=hello_uart -DBOARD=zcu102 -DCORE=a53
 #        [-DFORCE=ON]
 cmake_minimum_required(VERSION 3.18)
 
+set(TEMPLATE_DIR "${CMAKE_CURRENT_LIST_DIR}/rib-template")
 # ---- inputs ----
 if(NOT DEFINED TEMPLATE_DIR OR NOT DEFINED DEST_DIR)
   message(FATAL_ERROR "Set -DTEMPLATE_DIR and -DDEST_DIR")
