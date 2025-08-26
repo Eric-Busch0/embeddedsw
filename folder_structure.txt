@@ -1,0 +1,46 @@
+
+└── rib/
+    ├── CMakeLists.txt
+    ├── third_party/
+    │   ├── embeddedsw
+    │   ├── etl
+    │   ├── ...
+    │   └── freertos
+    └── rib-instance/
+        ├── hw/
+        │   └── bitstream.bit
+        ├── core0-a53/
+        │   ├── ld/
+        │   │   └── linker-script.ld
+        │   └── src/
+        │       ├── FreeRTOS_config.h
+        │       ├── xparameters.h
+        │       ├── main.c
+        │       └── shield/
+        │           ├── shield_main.cpp
+        │           ├── shield_main.h
+        │           └── ...
+        ├── core1-a53/
+        │   ├── ld/
+        │   │   └── linker-script.ld
+        │   └── src/
+        │       ├── FreeRTOS_config.h
+        │       ├── xparameters.h
+        │       ├── main.c
+        │       └── shield/
+        │           ├── shield_main.cpp
+        │           ├── shield_main.h
+        │           └── ...
+        ├── ...
+        ├── core0-r5/
+        │   ├── ld/
+        │   │   └── linker-script.ld
+        │   └── src/
+        │       ├── FreeRTOS_config.h
+        │       ├── xparameters.h
+        │       ├── main.c
+        │       └── shield/
+        │           ├── shield_main.cpp
+        │           ├── shield_main.h
+        │           └── ...
+        └── ...
