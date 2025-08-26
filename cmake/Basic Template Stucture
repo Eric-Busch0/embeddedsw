@@ -1,0 +1,8 @@
+templates/baremetal/
+  CMakeLists.txt.in
+  cmake/toolchain-@CORE@.cmake.in
+  scripts/boot.bif.in
+  bsp_inc/@CORE@/xparameters.h.in
+  ldscripts/@CORE@_ddr.ld
+  src/main.c
+  .gitignore
