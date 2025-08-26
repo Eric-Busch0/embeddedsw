@@ -9,6 +9,7 @@
     └── rib-instance/
         ├── hw/
         │   └── bitstream.bit
+        │   └── boot.bif
         ├── core0-a53/
         │   ├── ld/
         │   │   └── linker-script.ld
