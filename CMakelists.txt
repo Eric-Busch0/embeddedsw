@@ -1,0 +1,288 @@
+set(XILLIB_DIR ${CMAKE_CURRENT_SOURCE_DIR}/lib)
+
+package_lib(xilstartup
+SOURCES
+    ${XILLIB_DIR}/bsp/standalone/src/arm/ARMv8/64bit/gcc/asm_vectors.S
+    ${XILLIB_DIR}/bsp/standalone/src/arm/ARMv8/64bit/gcc/boot.S
+    ${XILLIB_DIR}/bsp/standalone/src/arm/ARMv8/64bit/gcc/initialise_monitor_handles.c
+    ${XILLIB_DIR}/bsp/standalone/src/arm/ARMv8/64bit/gcc/xil-crt0.S
+)
+
+
+#FSBL
+package_lib(xilfsbl
+SOURCES
+    ${XILLIB_DIR}/sw_apps/zynqmp_fsbl/misc/inbyte.c
+    ${XILLIB_DIR}/sw_apps/zynqmp_fsbl/misc/outbyte.c
+    ${XILLIB_DIR}/sw_apps/zynqmp_fsbl/misc/pm_cfg_obj.c
+    ${XILLIB_DIR}/sw_apps/zynqmp_fsbl/src/xfsbl_authentication.c
+    ${XILLIB_DIR}/sw_apps/zynqmp_fsbl/src/xfsbl_board.c
+    ${XILLIB_DIR}/sw_apps/zynqmp_fsbl/src/xfsbl_bs.c
+    ${XILLIB_DIR}/sw_apps/zynqmp_fsbl/src/xfsbl_csu_dma.c
+    ${XILLIB_DIR}/sw_apps/zynqmp_fsbl/src/xfsbl_ddr_init.c
+    ${XILLIB_DIR}/sw_apps/zynqmp_fsbl/src/xfsbl_dfu_util.c
+    ${XILLIB_DIR}/sw_apps/zynqmp_fsbl/src/xfsbl_handoff.c
+    ${XILLIB_DIR}/sw_apps/zynqmp_fsbl/src/xfsbl_hooks.c
+    ${XILLIB_DIR}/sw_apps/zynqmp_fsbl/src/xfsbl_image_header.c
+    ${XILLIB_DIR}/sw_apps/zynqmp_fsbl/src/xfsbl_initialization.c
+    ${XILLIB_DIR}/sw_apps/zynqmp_fsbl/src/xfsbl_main.c
+    ${XILLIB_DIR}/sw_apps/zynqmp_fsbl/src/xfsbl_misc.c
+    ${XILLIB_DIR}/sw_apps/zynqmp_fsbl/src/xfsbl_misc_drivers.c
+    ${XILLIB_DIR}/sw_apps/zynqmp_fsbl/src/xfsbl_nand.c
+    ${XILLIB_DIR}/sw_apps/zynqmp_fsbl/src/xfsbl_partition_load.c
+    ${XILLIB_DIR}/sw_apps/zynqmp_fsbl/src/xfsbl_plpartition_valid.c
+    ${XILLIB_DIR}/sw_apps/zynqmp_fsbl/src/xfsbl_qspi.c
+    ${XILLIB_DIR}/sw_apps/zynqmp_fsbl/src/xfsbl_rsa_sha.c
+    ${XILLIB_DIR}/sw_apps/zynqmp_fsbl/src/xfsbl_sd.c
+    ${XILLIB_DIR}/sw_apps/zynqmp_fsbl/src/xfsbl_tpm.c
+    ${XILLIB_DIR}/sw_apps/zynqmp_fsbl/src/xfsbl_tpm_util.c
+    ${XILLIB_DIR}/sw_apps/zynqmp_fsbl/src/xfsbl_usb.c
+
+
+INCLUDES
+    ${XILLIB_DIR}/sw_apps/zynqmp_fsbl/misc
+    ${XILLIB_DIR}/sw_apps/zynqmp_fsbl/src
+)
+
+# SW Services
+set(SW_SERVICES_DIR ${XILLIB_DIR}/sw_services)
+
+package_lib(xilffs
+    SOURCES
+        ${SW_SERVICES_DIR}/xilffs/src/ff.c
+        ${SW_SERVICES_DIR}/xilffs/src/diskio.c
+        ${SW_SERVICES_DIR}/xilffs/src/ffsystem.c
+        ${SW_SERVICES_DIR}/xilffs/src/ffunicode.c
+    INCLUDES
+        ${SW_SERVICES_DIR}/xilffs/src/include
+)
+
+package_lib(xilmailbox
+    SOURCES
+        ${SW_SERVICES_DIR}/xilmailbox/src/xilmailbox.c
+        ${SW_SERVICES_DIR}/xilmailbox/src/PS/xilmailbox_ipips.c
+        ${SW_SERVICES_DIR}/xilmailbox/src/PS/xilmailbox_ipips_control.c
+        ${SW_SERVICES_DIR}/xilmailbox/src/PS/xilmailbox_ipips_intr.c
+    
+    INCLUDES
+        ${SW_SERVICES_DIR}/xilmailbox/src
+        ${SW_SERVICES_DIR}/xilmailbox/src/PS
+
+)
+
+package_lib(xilfpga
+    SOURCES
+    ${SW_SERVICES_DIR}/xilfpga/src/xilfpga.c
+    ${SW_SERVICES_DIR}/xilfpga/src/interface/zynqmp/xilfpga_ipi_pcap.c
+    ${SW_SERVICES_DIR}/xilfpga/src/interface/zynqmp/xilfpga_pcap.c
+
+    INCLUDES
+        ${SW_SERVICES_DIR}/xilfpga/src
+        ${SW_SERVICES_DIR}/xilfpga/src/interface/zynqmp
+)
+
+package_lib(xilflash
+    SOURCES
+        ${SW_SERVICES_DIR}/xilflash/src/xilflash.c
+        ${SW_SERVICES_DIR}/xilflash/src/xilflash_amd.c
+        ${SW_SERVICES_DIR}/xilflash/src/xilflash_cfi.c
+        ${SW_SERVICES_DIR}/xilflash/src/xilflash_intel.c
+    INCLUDES
+        ${SW_SERVICES_DIR}/xilflash/src/include
+
+)
+
+
+#Xilinx IP LIB
+set(IPLIB_DIR ${CMAKE_CURRENT_SOURCE_DIR}/XilinxProcessorIPLib)
+set(IP_DRIVERS_DIR ${CMAKE_CURRENT_SOURCE_DIR}/XilinxProcessorIPLib/drivers)
+
+package_lib(xiluartps
+    SOURCES
+        ${IP_DRIVERS_DIR}/uartps/src/xuartps.c
+        ${IP_DRIVERS_DIR}/uartps/src/xuartps_g.c
+        ${IP_DRIVERS_DIR}/uartps/src/xuartps_hw.c
+        ${IP_DRIVERS_DIR}/uartps/src/xuartps_intr.c
+        ${IP_DRIVERS_DIR}/uartps/src/xuartps_options.c
+        ${IP_DRIVERS_DIR}/uartps/src/xuartps_selftest.c
+        ${IP_DRIVERS_DIR}/uartps/src/xuartps_sinit.c
+    INCLUDES
+        ${IP_DRIVERS_DIR}/uartps/src
+)
+
+package_lib(xilcanfd
+    SOURCES
+        ${IP_DRIVERS_DIR}/canfd/src/xcanfd.c
+        ${IP_DRIVERS_DIR}/canfd/src/xcanfd_config.c
+        ${IP_DRIVERS_DIR}/canfd/src/xcanfd_g.c
+        ${IP_DRIVERS_DIR}/canfd/src/xcanfd_intr.c
+        ${IP_DRIVERS_DIR}/canfd/src/xcanfd_selftest.c
+        ${IP_DRIVERS_DIR}/canfd/src/xcanfd_sinit.c
+    INCLUDES
+        ${IP_DRIVERS_DIR}/canfd/src
+)
+
+package_lib(xilcanps
+    SOURCES
+        ${IP_DRIVERS_DIR}/canps/src/xcanps.c
+        ${IP_DRIVERS_DIR}/canps/src/xcanps_g.c
+        ${IP_DRIVERS_DIR}/canps/src/xcanps_hw.c
+        ${IP_DRIVERS_DIR}/canps/src/xcanps_intr.c
+        ${IP_DRIVERS_DIR}/canps/src/xcanps_selftest.c
+        ${IP_DRIVERS_DIR}/canps/src/xcanps_sinit.c
+    INCLUDES
+        ${IP_DRIVERS_DIR}/canps/src
+)
+
+package_lib(xilcan
+    SOURCES
+        ${IP_DRIVERS_DIR}/can/src/xcan.c
+        ${IP_DRIVERS_DIR}/can/src/xcan_config.c
+        ${IP_DRIVERS_DIR}/can/src/xcan_g.c
+        ${IP_DRIVERS_DIR}/can/src/xcan_intr.c
+        ${IP_DRIVERS_DIR}/can/src/xcan_selftest.c
+    INCLUDES
+        ${IP_DRIVERS_DIR}/can/src
+
+)
+
+package_lib(xilaxidma
+    SOURCES
+        ${IP_DRIVERS_DIR}/axidma/src/xaxidma.c
+        ${IP_DRIVERS_DIR}/axidma/src/xaxidma_bd.c
+        ${IP_DRIVERS_DIR}/axidma/src/xaxidma_bdring.c
+        ${IP_DRIVERS_DIR}/axidma/src/xaxidma_g.c
+        ${IP_DRIVERS_DIR}/axidma/src/xaxidma_selftest.c
+        ${IP_DRIVERS_DIR}/axidma/src/xaxidma_sinit.c
+    INCLUDES
+        ${IP_DRIVERS_DIR}/axidma/src
+)
+
+
+package_lib(xilgpio
+    SOURCES
+        ${IP_DRIVERS_DIR}/gpio/src/xgpio.c
+        ${IP_DRIVERS_DIR}/gpio/src/xgpio_g.c
+        ${IP_DRIVERS_DIR}/gpio/src/xgpio_hw.c
+        ${IP_DRIVERS_DIR}/gpio/src/xgpio_intr.c
+        ${IP_DRIVERS_DIR}/gpio/src/xgpio_selftest.c
+        ${IP_DRIVERS_DIR}/gpio/src/xgpio_sinit.c
+        ${IP_DRIVERS_DIR}/gpio/src/xgpio_extra.c
+
+    INCLUDES
+        ${IP_DRIVERS_DIR}/gpio/src
+)
+
+package_lib(xilgpiops
+    SOURCES
+        ${IP_DRIVERS_DIR}/gpiops/src/xgpiops.c
+        ${IP_DRIVERS_DIR}/gpiops/src/xgpiops_g.c
+        ${IP_DRIVERS_DIR}/gpiops/src/xgpiops_hw.c
+        ${IP_DRIVERS_DIR}/gpiops/src/xgpiops_intr.c
+        ${IP_DRIVERS_DIR}/gpiops/src/xgpiops_selftest.c
+        ${IP_DRIVERS_DIR}/gpiops/src/xgpiops_sinit.c
+    INCLUDES
+        ${IP_DRIVERS_DIR}/gpiops/src
+)
+
+package_lib(xili2c
+    SOURCES
+         ${IP_DRIVERS_DIR}/iic/src/xiic.c
+         ${IP_DRIVERS_DIR}/iic/src/xiic_dyn_master.c
+         ${IP_DRIVERS_DIR}/iic/src/xiic_g.c
+         ${IP_DRIVERS_DIR}/iic/src/xiic_intr.c
+         ${IP_DRIVERS_DIR}/iic/src/xiic_l.c
+         ${IP_DRIVERS_DIR}/iic/src/xiic_master.c
+         ${IP_DRIVERS_DIR}/iic/src/xiic_multi_master.c
+         ${IP_DRIVERS_DIR}/iic/src/xiic_options.c
+         ${IP_DRIVERS_DIR}/iic/src/xiic_selftest.c
+         ${IP_DRIVERS_DIR}/iic/src/xiic_sinit.c
+         ${IP_DRIVERS_DIR}/iic/src/xiic_slave.c
+         ${IP_DRIVERS_DIR}/iic/src/xiic_stats.c
+    INCLUDES
+        ${IP_DRIVERS_DIR}/iic/src
+)
+
+package_lib(xili2cps
+    SOURCES
+        ${IP_DRIVERS_DIR}/iicps/src/xiicps.c
+        ${IP_DRIVERS_DIR}/iicps/src/xiicps_g.c
+        ${IP_DRIVERS_DIR}/iicps/src/xiicps_hw.c
+        ${IP_DRIVERS_DIR}/iicps/src/xiicps_intr.c
+        ${IP_DRIVERS_DIR}/iicps/src/xiicps_master.c
+        ${IP_DRIVERS_DIR}/iicps/src/xiicps_options.c
+        ${IP_DRIVERS_DIR}/iicps/src/xiicps_selftest.c
+        ${IP_DRIVERS_DIR}/iicps/src/xiicps_sinit.c
+        ${IP_DRIVERS_DIR}/iicps/src/xiicps_slave.c
+        ${IP_DRIVERS_DIR}/iicps/src/xiicps_xfer.c
+
+    INCLUDES
+        ${IP_DRIVERS_DIR}/iicps/src
+)
+
+
+package_lib(xilspi
+    SOURCES
+        ${IP_DRIVERS_DIR}/spi/src/xspi.c
+        ${IP_DRIVERS_DIR}/spi/src/xspi_g.c
+        ${IP_DRIVERS_DIR}/spi/src/xspi_options.c
+        ${IP_DRIVERS_DIR}/spi/src/xspi_selftest.c
+        ${IP_DRIVERS_DIR}/spi/src/xspi_sinit.c
+        ${IP_DRIVERS_DIR}/spi/src/xspi_stats.c
+
+    INCLUDES
+        ${IP_DRIVERS_DIR}/spi/src
+)
+
+package_lib(xilspips
+    SOURCES
+        ${IP_DRIVERS_DIR}/spips/src/xspips.c
+        ${IP_DRIVERS_DIR}/spips/src/xspips_g.c
+        ${IP_DRIVERS_DIR}/spips/src/xspips_hw.c
+        ${IP_DRIVERS_DIR}/spips/src/xspips_intr.c
+        ${IP_DRIVERS_DIR}/spips/src/xspips_options.c
+        ${IP_DRIVERS_DIR}/spips/src/xspips_selftest.c
+        ${IP_DRIVERS_DIR}/spips/src/xspips_sinit.c
+    INCLUDES
+        ${IP_DRIVERS_DIR}/spips/src
+)
+
+package_lib(xiltmrctr
+    SOURCES
+        ${IP_DRIVERS_DIR}/tmrctr/src/xtmrctr.c
+        ${IP_DRIVERS_DIR}/tmrctr/src/xtmrctr_g.c
+        ${IP_DRIVERS_DIR}/tmrctr/src/xtmrctr_intr.c
+        ${IP_DRIVERS_DIR}/tmrctr/src/xtmrctr_l.c
+        ${IP_DRIVERS_DIR}/tmrctr/src/xtmrctr_options.c
+        ${IP_DRIVERS_DIR}/tmrctr/src/xtmrctr_selftest.c
+        ${IP_DRIVERS_DIR}/tmrctr/src/xtmrctr_sinit.c
+        ${IP_DRIVERS_DIR}/tmrctr/src/xtmrctr_stats.c
+
+    INCLUDES
+        ${IP_DRIVERS_DIR}/tmrctr/src
+)
+
+package_lib(xiltmr_manager
+    SOURCES
+        ${IP_DRIVERS_DIR}/tmr_manager/src/xtmr_manager.c
+        ${IP_DRIVERS_DIR}/tmr_manager/src/xtmr_manager_g.c
+        ${IP_DRIVERS_DIR}/tmr_manager/src/xtmr_manager_intr.c
+        ${IP_DRIVERS_DIR}/tmr_manager/src/xtmr_manager_recover.c
+        ${IP_DRIVERS_DIR}/tmr_manager/src/xtmr_manager_selftest.c
+        ${IP_DRIVERS_DIR}/tmr_manager/src/xtmr_manager_sem.c
+        ${IP_DRIVERS_DIR}/tmr_manager/src/xtmr_manager_sinit.c
+        ${IP_DRIVERS_DIR}/tmr_manager/src/xtmr_manager_stats.c
+    INCLUDES
+        ${IP_DRIVERS_DIR}/tmr_manager/src
+)
+
+
+package_lib(xilwdtps
+    SOURCES
+        ${IP_DRIVERS_LIB}/wdtps/src/xwdtps.c
+        ${IP_DRIVERS_LIB}/wdtps/src/xwdtps_g.c
+        ${IP_DRIVERS_LIB}/wdtps/src/xwdtps_selftest.c
+        ${IP_DRIVERS_LIB}/wdtps/src/xwdtps_sinit.c
+    INCLUDES
+        ${IP_DRIVERS_DIR}/wdtps/src
+)
